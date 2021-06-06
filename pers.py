@@ -3,37 +3,55 @@ import random
 #подается номер игрока и размеры окна
 
 class player():
+	x = 0
+	y = 0
+	size = 20
+	speed = 5
+	color = '#FF0000'
+	vincible = False
+
 	def __init__(self, master=None, number, characters):
-		self.coords = [random.randint(0, characters[0]), random.randint(0, characters[1])]
-		self.number = number
+		pass
+		#self.coords = [random.randint(0, characters[0]), random.randint(0, characters[1])]
+		#self.number = number
 		#self.size = 20
-		self.speed = 2  #замени
+		#self.speed = 2  #замени
 
 
-	def move(command):
+	def move(self, command):
 		'''Знаки посмотри'''
-		if command is 'left':
-			self.coords[0] = self.coords[0] - self.speed
+		if command is 'LEFT':
+			#self.coords[0] = self.coords[0] - self.speed
+			x = x - speed
 
-		if command is 'rigth':
-			self.coords[0] = self.coords[0] + self.speed
+		if command is 'RIGHT':
+			#self.coords[0] = self.coords[0] + self.speed
+			x = x + speed
 
-		if command is 'up':
-			self.coords[1] = self.coords[1] - self.speed
+		if command is 'UP':
+			#self.coords[1] = self.coords[1] - self.speed
+			y = y - speed
 
-		if command is 'down':
-			self.coords[1] = self.coords[1] + self.speed
+		if command is 'DOWN':
+			#self.coords[1] = self.coords[1] + self.speed
+			y = y + speed
 
 
-	def return_color():
-		if self.number == 1:
-			return 'FF0000'
-		else:
-			return '00FF00'
+	def get_color(self):
+		return color
 
 	
-	def return_coords():
-		return self.coords
+	def get_x(self):
+		return x
 
+	def set_x(self, new_x):
+		x = new_x
 
-	def __del__(self):
+	def get_y(self):
+		return y
+
+	def set_y(self, new_y):
+		y = new_y
+
+	def size(self):
+		return size

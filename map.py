@@ -56,6 +56,9 @@ class Map:
 			self.potential_tiles_player1.add(self.coords_to_tiles(self.player1.get_x() + self.player1.player_size() - 1, self.player1.get_y()))
 			self.potential_tiles_player1.add(self.coords_to_tiles(self.player1.get_x(), self.player1.get_y() + self.player1.player_size() - 1))
 			self.potential_tiles_player1.add(self.coords_to_tiles(self.player1.get_x() + self.player1.player_size() - 1, self.player1.get_y() + self.player1.player_size() - 1))
+		if (len(self.tiles_player1 & self.potential_tiles_player2) != 0) or (len(self.potential_tiles_player1 & self.potential_tiles_player2) != 0):
+			self.player1.change_win(True)
+
 
 	def update_player2(self):
 		invincible = (self.coords_to_tiles(self.player2.get_x(), self.player2.get_y()) in self.tiles_player2) or (self.coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y()) in self.tiles_player2) or (self.coords_to_tiles(self.player2.get_x(), self.player2.get_y() + self.player2.player_size() - 1) in self.tiles_player2) or (self.coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y() + self.player2.player_size() - 1) in self.tiles_player2)
@@ -72,7 +75,9 @@ class Map:
 			self.potential_tiles_player2.add(self.coords_to_tiles(self.player2.get_x(), self.player2.get_y()))
 			self.potential_tiles_player2.add(self.coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y()))
 			self.potential_tiles_player2.add(self.coords_to_tiles(self.player2.get_x(), self.player2.get_y() + self.player2.player_size() - 1))
-			self.potential_tiles_player2.add(self.coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y() + self.player2.player_size() - 1))		
+			self.potential_tiles_player2.add(self.coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y() + self.player2.player_size() - 1))
+		if (len(self.tiles_player2 & self.potential_tiles_player1) != 0) or (len(self.potential_tiles_player2 & self.potential_tiles_player1) != 0):
+			self.player2.change_win(True)
 
 	def process_movement(self, key):
 		if key == 'W':

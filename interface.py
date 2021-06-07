@@ -51,34 +51,50 @@ class Application(tk.Tk):
 
     def __a_handler(self, event):
         self.field.process_movement('A')
+        if (self.field.player1.check_win()):
+            self.won()
         self.draw_everything()
 
     def __w_handler(self, event):
         self.field.process_movement('W')
+        if (self.field.player1.check_win()):
+            self.won()
         self.draw_everything()
 
     def __s_handler(self, event):
         self.field.process_movement('S')
+        if (self.field.player1.check_win()):
+            self.won()
         self.draw_everything()
 
     def __d_handler(self, event):
         self.field.process_movement('D')
+        if (self.field.player1.check_win()):
+            self.won()
         self.draw_everything()
 
     def __arrow_left_handler(self, event):
         self.field.process_movement('ARROW_LEFT')
+        if (self.field.player2.check_win()):
+            self.lose()
         self.draw_everything()
 
     def __arrow_up_handler(self, event):
         self.field.process_movement('ARROW_UP')
+        if (self.field.player2.check_win()):
+            self.lose()
         self.draw_everything()
 
     def __arrow_down_handler(self, event):
         self.field.process_movement('ARROW_DOWN')
+        if (self.field.player2.check_win()):
+            self.lose()
         self.draw_everything()
 
     def __arrow_right_handler(self, event):
         self.field.process_movement('ARROW_RIGHT')
+        if (self.field.player2.check_win()):
+            self.lose()
         self.draw_everything()
 
     def text_info(self):

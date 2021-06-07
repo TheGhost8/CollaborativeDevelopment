@@ -7,10 +7,13 @@ class Player():
 		self.color = new_color
 		self.transparent_color = new_transparent_color
 		self.vincible = False
+		self.win = False
 
-	def set_coords(self, new_x, new_y):
-		self.x = new_x
-		self.y = new_y
+	def check_win(self):
+		return self.win
+
+	def change_win(self, new_win):
+		self.win = new_win
 
 	def check_vincible(self):
 		return self.vincible
@@ -23,6 +26,10 @@ class Player():
 
 	def get_transparent_color(self):
 		return self.transparent_color
+
+	def set_coords(self, new_x, new_y):
+		self.x = new_x
+		self.y = new_y
 
 	def get_x(self):
 		return self.x

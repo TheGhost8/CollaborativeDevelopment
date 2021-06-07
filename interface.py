@@ -12,6 +12,7 @@ class Application(tk.Frame):
         super().__init__(master, **kwargs) 
         #self.geometry('1000x600')
         #self.window_game = Game()
+        '''
         self.master.title(title)
         self.master.columnconfigure(0, weight=1)
         self.master.rowconfigure(0, weight=1)
@@ -20,11 +21,19 @@ class Application(tk.Frame):
         self.info = Button(text = "Information", command = self.text_info)
         self.info.grid(column=1, row=2)
         self.exit = Button(text = "Exit", command = self.quit)
+        '''
+        self.restart = Button(text = "New game", command = self.new_game, width = 30)
+        self.restart.grid(column=0, row =2)
+        self.info = Button(text = "Informathoin", command = self.text_info, width = 30)
+        self.info.grid(column=1, row=2)
+        self.exit = Button(text = "exit", command = self.quit, width = 30)
+        '''
         self.exit.grid(column=2, row =2)
         self.map = tk.Canvas(bg='#fff', width=800, height=600)
         #id1 = self.map.create_rectangle(60, 60, 80, 80, fill='#000000')
         self.map.grid()
         self.new_game()
+        '''
 
 
     def new_game(self):
@@ -56,6 +65,11 @@ class Application(tk.Frame):
 
 
 
+'''
 app = Application(title='Game')
 #app.title('Game')
+'''
+app = Application()
+#app.title('Game')
+#app.resizable(width=False, height=False)
 app.mainloop()

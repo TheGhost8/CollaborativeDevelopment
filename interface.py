@@ -8,11 +8,11 @@ class Application(tk.Tk):
         tk.Tk.__init__(self, master)
         self.geometry('800x700')
         #self.window_game = Game()
-        self.restart = Button(text = "New game", command = self.new_game)
+        self.restart = Button(text = "New game", command = self.new_game, width = 30)
         self.restart.grid(column=0, row =2)
-        self.info = Button(text = "Informathoin", command = self.text_info)
+        self.info = Button(text = "Informathoin", command = self.text_info, width = 30)
         self.info.grid(column=1, row=2)
-        self.exit = Button(text = "exit", command = self.quit)
+        self.exit = Button(text = "exit", command = self.quit, width = 30)
         self.exit.grid(column=2, row =2)
         self.new_game()
 
@@ -49,4 +49,5 @@ class Application(tk.Tk):
 
 app = Application()
 app.title('Game')
+app.resizable(width=False, height=False)
 app.mainloop()

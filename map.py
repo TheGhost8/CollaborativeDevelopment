@@ -5,10 +5,10 @@ import pers.py
 class Map:
 	PIXEL_SCREEN_WIDTH = 800
 	PIXEL_SCREEN_HEIGHT = 600
-	player1 = player()
+	player1 = Player(color="#00FF00")
 	tiles_player1 = set()
 	potential_tiles_player1 = set()
-	player2 = player()
+	player2 = Player(color="#FF0000")
 	tiles_player2 = set()
 	potential_tiles_player2 = set()
 
@@ -27,6 +27,18 @@ class Map:
 		for i in range(player2_tile - 1, player2_tile + 2):
 			for j in range(player2_tile - 1, player2_tile + 2):
 				tiles_player2.add((i, j))
+
+	def get_tiles_player1():
+		return tiles_player1
+
+	def get_potential_tiles_player1():
+		return potential_tiles_player1
+
+	def get_tiles_player2():
+		return tiles_player2
+
+	def get_potential_tiles_player2():
+		return potential_tiles_player2
 
 	def refresh_tiles_player1(self):
 		if player1.vincible():

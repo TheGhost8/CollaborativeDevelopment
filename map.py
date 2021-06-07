@@ -1,97 +1,97 @@
 import tkinter as tk
-import pers.py
+from pers import Player
 
 
 class Map:
-	PIXEL_SCREEN_WIDTH = 800
-	PIXEL_SCREEN_HEIGHT = 600
-	player1 = Player(color="#00FF00")
-	tiles_player1 = set()
-	potential_tiles_player1 = set()
-	player2 = Player(color="#FF0000")
-	tiles_player2 = set()
-	potential_tiles_player2 = set()
-
-	def coords_to_tiles(x, y)
-		return (x / player1.size(), y / player1.size())
+	def coords_to_tiles(self, x, y):
+		return (int(x / self.player1.player_size()), int(y / self.player1.player_size()))
 
 	def __init__(self):
-		player1.set_coords(player1.size() * 3, player1.size() * 3)
-		player1_tile = coords_to_tiles(player1.get_x(), player1.get_y())
+		self.PIXEL_SCREEN_WIDTH = 800
+		self.PIXEL_SCREEN_HEIGHT = 600
+		self.player1 = Player(new_color="#00FF00")
+		self.tiles_player1 = set()
+		self.potential_tiles_player1 = set()
+		self.player2 = Player(new_color="#FF0000")
+		self.tiles_player2 = set()
+		self.potential_tiles_player2 = set()
+
+		self.player1.set_coords(new_x=self.player1.player_size() * 3, new_y=self.player1.player_size() * 3)
+		player1_tile = self.coords_to_tiles(self.player1.get_x(), self.player1.get_y())
 		for i in range(player1_tile[0] - 1, player1_tile[0] + 2):
 			for j in range(player1_tile[1] - 1, player1_tile[1] + 2):
-				tiles_player1.add((i, j))
+				self.tiles_player1.add((i, j))
 
-		player2.set_coords(player2.size() * 12, player2.size() * 12)
-		player2_tile = coords_to_tiles(player2.get_x(), player2.get_y())
-		for i in range(player2_tile - 1, player2_tile + 2):
-			for j in range(player2_tile - 1, player2_tile + 2):
-				tiles_player2.add((i, j))
+		self.player2.set_coords(self.player2.player_size() * 12, self.player2.player_size() * 12)
+		player2_tile = self.coords_to_tiles(self.player2.get_x(), self.player2.get_y())
+		for i in range(player2_tile[0] - 1, player2_tile[0] + 2):
+			for j in range(player2_tile[1] - 1, player2_tile[1] + 2):
+				self.tiles_player2.add((i, j))
 
-	def get_tiles_player1():
-		return tiles_player1
+	def get_tiles_player1(self):
+		return self.tiles_player1
 
-	def get_potential_tiles_player1():
-		return potential_tiles_player1
+	def get_potential_tiles_player1(self):
+		return self.potential_tiles_player1
 
-	def get_tiles_player2():
-		return tiles_player2
+	def get_tiles_player2(self):
+		return self.tiles_player2
 
-	def get_potential_tiles_player2():
-		return potential_tiles_player2
+	def get_potential_tiles_player2(self):
+		return self.potential_tiles_player2
 
 	def refresh_tiles_player1(self):
-		if player1.vincible():
-			potential_tiles_player1.add(coords_to_tiles(player1.get_x(), player1.get_y()))
-			potential_tiles_player1.add(coords_to_tiles(player1.get_x() + player1.size() - 1, player1.get_y()))
-			potential_tiles_player1.add(coords_to_tiles(player1.get_x(), player1.get_y() + player1.size() - 1))
-			potential_tiles_player1.add(coords_to_tiles(player1.get_x() + player1.size() - 1, player1.get_y() + player1.size() - 1))
+		if self.player1.vincible():
+			self.potential_tiles_player1.add(coords_to_tiles(self.player1.get_x(), self.player1.get_y()))
+			self.potential_tiles_player1.add(coords_to_tiles(self.player1.get_x() + self.player1.player_size() - 1, self.player1.get_y()))
+			self.potential_tiles_player1.add(coords_to_tiles(self.player1.get_x(), self.player1.get_y() + self.player1.player_size() - 1))
+			self.potential_tiles_player1.add(coords_to_tiles(self.player1.get_x() + self.player1.player_size() - 1, self.player1.get_y() + self.player1.player_size() - 1))
 
 	def refresh_tiles_player2(self):
-		if player2.vincible():
-			potential_tiles_player2.add(coords_to_tiles(player2.get_x(), player2.get_y()))
-			potential_tiles_player2.add(coords_to_tiles(player2.get_x() + player2.size() - 1, player2.get_y()))
-			potential_tiles_player2.add(coords_to_tiles(player2.get_x(), player2.get_y() + player2.size() - 1))
-			potential_tiles_player2.add(coords_to_tiles(player2.get_x() + player2.size() - 1, player2.get_y() + player2.size() - 1))		
+		if self.player2.vincible():
+			self.potential_tiles_player2.add(coords_to_tiles(self.player2.get_x(), self.player2.get_y()))
+			self.potential_tiles_player2.add(coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y()))
+			self.potential_tiles_player2.add(coords_to_tiles(self.player2.get_x(), self.player2.get_y() + self.player2.player_size() - 1))
+			self.potential_tiles_player2.add(coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y() + self.player2.player_size() - 1))		
 
 	def process_movement(self, key):
 		if key == 'W':
-			player1.move('UP')
-			if (player1.get_y() < 0):
-				player1.set_y(0)
-			refresh_tiles_player1()
+			self.player1.move('UP')
+			if (self.player1.get_y() < 0):
+				self.player1.set_y(0)
+			self.refresh_tiles_player1()
 		elif key == 'D':
-			player1.move('RIGHT')
-			if (player1.get_x() + player1.size() > PIXEL_SCREEN_WIDTH):
-				player1.set_x(PIXEL_SCREEN_WIDTH - player1.size())
-			refresh_tiles_player1()
+			self.player1.move('RIGHT')
+			if (self.player1.get_x() + self.player1.player_size() > self.PIXEL_SCREEN_WIDTH):
+				self.player1.set_x(self.PIXEL_SCREEN_WIDTH - self.player1.player_size())
+			self.refresh_tiles_player1()
 		elif key == 'S':
-			player1.move('DOWN')
-			if (player1.get_y() + player1.size() > PIXEL_SCREEN_HEIGHT):
-				player1.set_y(PIXEL_SCREEN_HEIGHT - player1.size())
-			refresh_tiles_player1()
+			self.player1.move('DOWN')
+			if (self.player1.get_y() + self.player1.player_size() > self.PIXEL_SCREEN_HEIGHT):
+				self.player1.set_y(self.PIXEL_SCREEN_HEIGHT - self.player1.player_size())
+			self.refresh_tiles_player1()
 		elif key == 'A':
-			player1.move('LEFT')
-			if (player1.get_x() < 0):
-				player1.set_x(0)
-			refresh_tiles_player1()
+			self.player1.move('LEFT')
+			if (self.player1.get_x() < 0):
+				self.player1.set_x(0)
+			self.refresh_tiles_player1()
 		elif key == 'ARROW_UP':
-			player2.move('UP')
-			if (player2.get_y() < 0):
-				player2.set_y(0)
-			refresh_tiles_player2()
+			self.player2.move('UP')
+			if (self.player2.get_y() < 0):
+				self.player2.set_y(0)
+			self.refresh_tiles_player2()
 		elif key == 'ARROW_RIGHT':
-			player2.move('RIGHT')
-			if (player2.get_x() + player2.size() > PIXEL_SCREEN_WIDTH):
-				player2.set_x(PIXEL_SCREEN_WIDTH - player2.size())
-			refresh_tiles_player2()
+			self.player2.move('RIGHT')
+			if (self.player2.get_x() + self.player2.player_size() > self.PIXEL_SCREEN_WIDTH):
+				self.player2.set_x(self.PIXEL_SCREEN_WIDTH - self.player2.player_size())
+			self.refresh_tiles_player2()
 		elif key == 'ARROW_DOWN':
-			player2.move('DOWN')
-			if (player2.get_y() + player2.size() > PIXEL_SCREEN_HEIGHT):
-				player2.set_y(PIXEL_SCREEN_HEIGHT - player2.size())
-			refresh_tiles_player2()
+			self.player2.move('DOWN')
+			if (self.player2.get_y() + self.player2.player_size() > self.PIXEL_SCREEN_HEIGHT):
+				self.player2.set_y(self.PIXEL_SCREEN_HEIGHT - self.player2.player_size())
+			self.refresh_tiles_player2()
 		elif key == 'ARROW_LEFT':
-			if (player2.get_x() < 0):
-				player2.set_x(0)
-			player2.move('LEFT')
-			refresh_tiles_player2()
+			self.player2.move('LEFT')
+			if (self.player2.get_x() < 0):
+				self.player2.set_x(0)
+			self.refresh_tiles_player2()

@@ -1,8 +1,4 @@
-import random
-
-#подается номер игрока и размеры окна
-
-class player():
+class Player():
 	x = 0
 	y = 0
 	size = 20
@@ -10,37 +6,20 @@ class player():
 	color = '#FF0000'
 	vincible = False
 
-	def __init__(self, master=None, number, characters):
-		pass
-		#self.coords = [random.randint(0, characters[0]), random.randint(0, characters[1])]
-		#self.number = number
-		#self.size = 20
-		#self.speed = 2  #замени
+	def __init__(self, new_x=0, new_y=0, new_size=20, new_speed=5, new_color='#FF0000'):
+		x = new_x
+		y = new_y
+		size = new_size
+		speed = new_speed
+		color = new_color
 
-
-	def move(self, command):
-		'''Знаки посмотри'''
-		if command is 'LEFT':
-			#self.coords[0] = self.coords[0] - self.speed
-			x = x - speed
-
-		if command is 'RIGHT':
-			#self.coords[0] = self.coords[0] + self.speed
-			x = x + speed
-
-		if command is 'UP':
-			#self.coords[1] = self.coords[1] - self.speed
-			y = y - speed
-
-		if command is 'DOWN':
-			#self.coords[1] = self.coords[1] + self.speed
-			y = y + speed
-
+	def set_coords(new_x, new_y):
+		x = new_x
+		y = new_y
 
 	def get_color(self):
 		return color
 
-	
 	def get_x(self):
 		return x
 
@@ -55,3 +34,16 @@ class player():
 
 	def size(self):
 		return size
+
+	def move(self, command):
+		if command is 'LEFT':
+			x = x - speed
+
+		if command is 'RIGHT':
+			x = x + speed
+
+		if command is 'UP':
+			y = y - speed
+
+		if command is 'DOWN':
+			y = y + speed

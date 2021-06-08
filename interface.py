@@ -1,11 +1,37 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
+import pygame
 from map import Map
 from clock import Clock
 
 
 class Application(tk.Tk):
+    '''
+    def keydown(self, e):
+        events = pygame.event.get()
+        keys = pygame.key.get_pressed()
+        print(events)
+
+        if keys[pygame.K_a]:
+            self.__a_handler(e)
+        elif keys[pygame.K_w]:
+            self.__w_handler(e)
+        elif keys[pygame.K_s]:
+            self.__s_handler(e)
+        elif keys[pygame.K_d]:
+            self.__d_handler(e)
+        elif keys[pygame.K_LEFT]:
+            self.__arrow_left_handler(e)
+        elif keys[pygame.K_UP]:
+            self.__arrow_up_handler(e)
+        elif keys[pygame.K_DOWN]:
+            self.__arrow_down_handler(e)
+        elif keys[pygame.K_RIGHT]:
+            self.__arrow_right_handler(e)
+        #pygame.event.pump()
+    '''
+
     def __init__(self, master=None, title="Paper.io", **kwargs):
         self.field = Map()
         super().__init__(master, **kwargs)
@@ -16,6 +42,9 @@ class Application(tk.Tk):
         self.exit = tk.Button(self.frame, text = "Exit", command = self.quit, width=27, height=2).pack(side=tk.LEFT)
         self.clock = Clock(self.frame).pack(side=tk.LEFT)
 
+
+        #self.bind("<KeyPress>", self.keydown)
+        
         self.bind_all('<KeyPress-a>', self.__a_handler)
         self.bind_all('<KeyPress-w>', self.__w_handler)
         self.bind_all('<KeyPress-s>', self.__s_handler)
@@ -24,7 +53,7 @@ class Application(tk.Tk):
         self.bind_all('<KeyPress-Up>', self.__arrow_up_handler)
         self.bind_all('<KeyPress-Down>', self.__arrow_down_handler)
         self.bind_all('<KeyPress-Right>', self.__arrow_right_handler)
-
+        
         self.window = tk.Frame(self)
         self.window.pack()
         self.canv = tk.Canvas(self.window, bg='#fff', width=800, height=600)
@@ -32,6 +61,7 @@ class Application(tk.Tk):
         self.new_game()
 
     def new_game(self):
+        self.field = Map()
         self.draw_everything()
 
     def draw_everything(self):
@@ -102,23 +132,15 @@ class Application(tk.Tk):
 
     def won(self):
         messagebox.showinfo('End_game', 'First player win!')
-        self.end_game()
+        self.new_game()
 
     def lose(self):
         messagebox.showinfo('End_game', 'Second player win!')
-        self.end_game()
-
-    def end_game(self):
-        root = tk.Tk()
-        root.title('Continue the game?')
-        root.geometry('300x60')
-        var = tk.IntVar()
-        var.set(0)
-        tk.Radiobutton(root, text="Yes", command=self.new_game, variable=var, value=0).pack()
-        tk.Radiobutton(root, text="No", command=self.quit, variable=var, value=2).pack()
-        root.mainloop()
+        self.new_game()
 
 
+#pygame.init()
+#pygame.event.pump()
 app = Application()
 app.title('paper.io')
 app.resizable(width=False, height=False)

@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
 from map import Map
+from clock import Clock
 
 
 class Application(tk.Tk):
@@ -10,9 +11,11 @@ class Application(tk.Tk):
         super().__init__(master, **kwargs)
         self.frame = Frame(self)
         self.frame.pack()
-        self.restart = Button(self.frame ,text = "New game", command = self.new_game, width=30, height=2).pack(side=LEFT)
-        self.info = Button(self.frame , text = "Information", command = self.text_info, width=30, height=2).pack(side=LEFT)
-        self.exit = Button(self.frame ,  text = "Exit", command = self.quit, width=30, height=2).pack(side=LEFT)
+        self.restart = Button(self.frame ,text = "New game", command = self.new_game, width=27, height=2).pack(side=LEFT)
+        self.info = Button(self.frame , text = "Information", command = self.text_info, width=27, height=2).pack(side=LEFT)
+        self.exit = Button(self.frame ,  text = "Exit", command = self.quit, width=27, height=2).pack(side=LEFT)
+        self.clock = Clock(self.frame).pack(side=LEFT)
+
 
         self.bind_all('<KeyPress-a>', self.__a_handler)
         self.bind_all('<KeyPress-w>', self.__w_handler)
@@ -102,24 +105,28 @@ class Application(tk.Tk):
 
 
     def won(self):
-    	messagebox.showinfo('You win!')
-    	self.end_game()
+        messagebox.showinfo('End_game', 'First player win!')
+        self.end_game()
 
 
     def lose(self):
-    	messagebox.showinfo('You lose!')
-    	self.end_game()
+        messagebox.showinfo('End_game', 'Second player win!')
+        self.end_game()
 
 
     def end_game(self):
-    	combo = Combobox(self)
-    	combo['values'] = ('Yes', 'No')
-    	combo.current('No')
-    	if combo.current == 1:
-    		self.new_game
-    	else:
-    		self.quit
-
+        
+        root = Tk()
+        root.title('Continue the game?')
+        root.geometry('300x60')
+        var = IntVar()
+        var.set(0)
+        Radiobutton(root, text="Yes", command=self.new_game,
+                    variable=var, value=0).pack()
+        Radiobutton(root, text="No", command=self.quit,
+                    variable=var, value=2).pack()
+        root.mainloop()
+        
 
 app = Application()
 app.title('paper.io')

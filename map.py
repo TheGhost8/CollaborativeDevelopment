@@ -1,12 +1,17 @@
-'''import tkinter as tk'''
+"""module map."""
+
 from pers import Player
 
 
 class Map:
+    """Class contein map of this game."""
+
     def coords_to_tiles(self, x, y):
+        """Coords."""
         return (int(x / self.player1.player_size()), int(y / self.player1.player_size()))
 
     def __init__(self):
+        """Create map."""
         self.PIXEL_SCREEN_WIDTH = 800
         self.PIXEL_SCREEN_HEIGHT = 600
         self.player1 = Player(new_color="#00FF00", new_transparent_color="#BBFFBB")
@@ -27,18 +32,23 @@ class Map:
                 self.tiles_player2.add((i, j))
 
     def get_tiles_player1(self):
+        """Get tiles player1."""
         return self.tiles_player1
 
     def get_potential_tiles_player1(self):
+        """Get potential tiles player1."""
         return self.potential_tiles_player1
 
     def get_tiles_player2(self):
+        """Get tiles player2."""
         return self.tiles_player2
 
     def get_potential_tiles_player2(self):
+        """Get potential tiles player2."""
         return self.potential_tiles_player2
 
     def update_player1(self):
+        """Update player1."""
         invincible = (self.coords_to_tiles(self.player1.get_x(), self.player1.get_y()) in self.tiles_player1) or (self.coords_to_tiles(self.player1.get_x() + self.player1.player_size() - 1, self.player1.get_y()) in self.tiles_player1) or (self.coords_to_tiles(self.player1.get_x(), self.player1.get_y() + self.player1.player_size() - 1) in self.tiles_player1) or (self.coords_to_tiles(self.player1.get_x() + self.player1.player_size() - 1, self.player1.get_y() + self.player1.player_size() - 1) in self.tiles_player1)
         if (self.player1.check_vincible() and invincible):
             min_tile = min(self.potential_tiles_player1)
@@ -58,6 +68,7 @@ class Map:
             self.player1.change_win(True)
 
     def update_player2(self):
+        """Update_player2."""
         invincible = (self.coords_to_tiles(self.player2.get_x(), self.player2.get_y()) in self.tiles_player2) or (self.coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y()) in self.tiles_player2) or (self.coords_to_tiles(self.player2.get_x(), self.player2.get_y() + self.player2.player_size() - 1) in self.tiles_player2) or (self.coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y() + self.player2.player_size() - 1) in self.tiles_player2)
         if (self.player2.check_vincible() and invincible):
             min_tile = min(self.potential_tiles_player2)
@@ -77,6 +88,7 @@ class Map:
             self.player2.change_win(True)
 
     def process_movement(self, key):
+        """Process_movement."""
         if key == 'W':
             self.player1.move('UP')
             if (self.player1.get_y() < 0):

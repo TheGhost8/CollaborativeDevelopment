@@ -1,17 +1,15 @@
+"""module clock."""
+
 import tkinter
 import time
 
 
 class Clock(tkinter.Label):
-    """ Class that contains the clock widget and clock refresh """
+    """Class that contains the clock widget and clock refresh."""
 
     def __init__(self, parent=None, seconds=True, colon=False):
-        """
-        Create and place the clock widget into the parent element
-        It's an ordinary Label element with two additional features.
-        """
+        """Create and place the clock widget into the parent element."""
         tkinter.Label.__init__(self, parent)
-
         self.display_seconds = seconds
         if self.display_seconds:
             self.time = time.strftime('%H:%M:%S')
@@ -26,7 +24,7 @@ class Clock(tkinter.Label):
         self.after(200, self.tick)
 
     def tick(self):
-        """ Updates the display clock every 200 milliseconds """
+        """Update the display clock every 200 milliseconds."""
         if self.display_seconds:
             new_time = time.strftime('%H:%M:%S')
         else:
@@ -38,7 +36,7 @@ class Clock(tkinter.Label):
         self.after(200, self.tick)
 
     def blink_colon(self):
-        """ Blink the colon every second """
+        """Blink the colon every second."""
         if ':' in self.display_time:
             self.display_time = self.display_time.replace(':', ' ')
         else:

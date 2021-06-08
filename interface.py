@@ -9,13 +9,12 @@ class Application(tk.Tk):
     def __init__(self, master=None, title="Paper.io", **kwargs):
         self.field = Map()
         super().__init__(master, **kwargs)
-        self.frame = Frame(self)
+        self.frame = tk.Frame(self)
         self.frame.pack()
-        self.restart = Button(self.frame ,text = "New game", command = self.new_game, width=27, height=2).pack(side=LEFT)
-        self.info = Button(self.frame , text = "Information", command = self.text_info, width=27, height=2).pack(side=LEFT)
-        self.exit = Button(self.frame ,  text = "Exit", command = self.quit, width=27, height=2).pack(side=LEFT)
-        self.clock = Clock(self.frame).pack(side=LEFT)
-
+        self.restart = tk.Button(self.frame, text = "New game", command = self.new_game, width=27, height=2).pack(side=tk.LEFT)
+        self.info = tk.Button(self.frame, text = "Information", command = self.text_info, width=27, height=2).pack(side=tk.LEFT)
+        self.exit = tk.Button(self.frame, text = "Exit", command = self.quit, width=27, height=2).pack(side=tk.LEFT)
+        self.clock = Clock(self.frame).pack(side=tk.LEFT)
 
         self.bind_all('<KeyPress-a>', self.__a_handler)
         self.bind_all('<KeyPress-w>', self.__w_handler)
@@ -26,16 +25,14 @@ class Application(tk.Tk):
         self.bind_all('<KeyPress-Down>', self.__arrow_down_handler)
         self.bind_all('<KeyPress-Right>', self.__arrow_right_handler)
 
-        self.window = Frame(self)
+        self.window = tk.Frame(self)
         self.window.pack()
         self.canv = tk.Canvas(self.window, bg='#fff', width=800, height=600)
-        self.canv.pack(side=LEFT)
+        self.canv.pack(side=tk.LEFT)
         self.new_game()
-        
 
     def new_game(self):
         self.draw_everything()
-
 
     def draw_everything(self):
         self.canv.delete('all')
@@ -101,32 +98,26 @@ class Application(tk.Tk):
         self.draw_everything()
 
     def text_info(self):
-    	messagebox.showinfo('information', 'Игра для двоих пользователей.\nЕсть два игрока\n - небольшие квадратики разного цвета с выделенным ободком.\n Каждый игрок может двигаться влево/вправо/вверх/вниз и наискосок. Когда игрок идёт по нейтральной территории, за ним тянется полупрозрачный след из его цвета\nИгровые кнопки:\n "Esc" - выход из игры\n "p" - пауза\n "i" - показать окно информации\n Управление игроками:\n Первый игрок: "w", "a", "s", "d"\n Второй игрок: стрелочки))\n\n Правила игры - на игровом поле перемещать своего персонажа и захватывать территории\nпутем закрашивания пройденного следа персонажем и возможности закрашивать\nв свой цвет области, обведенные уже закрашенными областями поля\nЕсли до того, как игрок вернулся на свою закращенную область, соперник перешёл через его полупрозрачный след (разорвал связь игрока с его закрашенной областью), то игрок проигрывает - побеждает соперник.\n Цель игры - уничтожить соперника')
-
+        messagebox.showinfo('information', 'Игра для двоих пользователей.\nЕсть два игрока\n - небольшие квадратики разного цвета с выделенным ободком.\n Каждый игрок может двигаться влево/вправо/вверх/вниз и наискосок. Когда игрок идёт по нейтральной территории, за ним тянется полупрозрачный след из его цвета\nИгровые кнопки:\n "Esc" - выход из игры\n "p" - пауза\n "i" - показать окно информации\n Управление игроками:\n Первый игрок: "w", "a", "s", "d"\n Второй игрок: стрелочки))\n\n Правила игры - на игровом поле перемещать своего персонажа и захватывать территории\nпутем закрашивания пройденного следа персонажем и возможности закрашивать\nв свой цвет области, обведенные уже закрашенными областями поля\nЕсли до того, как игрок вернулся на свою закращенную область, соперник перешёл через его полупрозрачный след (разорвал связь игрока с его закрашенной областью), то игрок проигрывает - побеждает соперник.\n Цель игры - уничтожить соперника')
 
     def won(self):
         messagebox.showinfo('End_game', 'First player win!')
         self.end_game()
 
-
     def lose(self):
         messagebox.showinfo('End_game', 'Second player win!')
         self.end_game()
 
-
     def end_game(self):
-        
-        root = Tk()
+        root = tk.Tk()
         root.title('Continue the game?')
         root.geometry('300x60')
-        var = IntVar()
+        var = tk.IntVar()
         var.set(0)
-        Radiobutton(root, text="Yes", command=self.new_game,
-                    variable=var, value=0).pack()
-        Radiobutton(root, text="No", command=self.quit,
-                    variable=var, value=2).pack()
+        tk.Radiobutton(root, text="Yes", command=self.new_game, variable=var, value=0).pack()
+        tk.Radiobutton(root, text="No", command=self.quit, variable=var, value=2).pack()
         root.mainloop()
-        
+
 
 app = Application()
 app.title('paper.io')

@@ -17,9 +17,9 @@ class Application(tk.Tk):
         super().__init__(master, **kwargs)
         self.frame = tk.Frame(self)
         self.frame.pack()
-        self.language = tk.Button(self.frame, text="Change language", command=self.change_languege, width=17, height=2).pack(side=tk.LEFT)
         self.restart = tk.Button(self.frame, text="New game", command=self.new_game, width=20, height=2).pack(side=tk.LEFT)
-        self.info = tk.Button(self.frame, text="Information", command=self.text_info, width=20, height=2).pack(side=tk.LEFT)
+        self.language = tk.Button(self.frame, text="Change language", command=self.change_languege, width=19, height=2).pack(side=tk.LEFT)
+        self.info = tk.Button(self.frame, text="Information", command=self.text_info, width=19, height=2).pack(side=tk.LEFT)
         self.exit = tk.Button(self.frame, text="Exit", command=self.quit, width=20, height=2).pack(side=tk.LEFT)
         self.clock = Clock(self.frame).pack(side=tk.LEFT)
 

@@ -31,9 +31,8 @@ class Application(tk.Tk):
         self.canv.pack(side=tk.LEFT)
         self.new_game()
 
-
     def click(self):
-        """Click some buttons"""
+        """Click some buttons."""
         self.bind_all('<KeyPress-p>', self.__p_handler)
         self.bind_all('<KeyPress-i>', self.text_info)
         self.bind_all('<KeyPress-n>', self.new_game)
@@ -57,7 +56,6 @@ class Application(tk.Tk):
         self.bind_all('<KeyRelease-Down>', self.__arrow_down_release)
         self.bind_all('<KeyRelease-Right>', self.__arrow_right_release)
 
-
     def new_game(self, event=None):
         """New."""
         self.field = Map()
@@ -80,10 +78,11 @@ class Application(tk.Tk):
         self.canv.create_rectangle(self.field.player2.get_x(), self.field.player2.get_y(), self.field.player2.get_x() + self.field.player2.player_size(), self.field.player2.get_y() + self.field.player2.player_size(), fill=self.field.player2.get_color())
 
     def escape_handler(self, event):
+        """Escape handler."""
         self.quit()
 
     def __p_handler(self, event):
-        """Pause control"""
+        """Pause control."""
         self.buttons[8] = not self.buttons[8]
         self.check_buttons()
 
@@ -100,7 +99,7 @@ class Application(tk.Tk):
     def __s_handler(self, event):
         """S handler."""
         self.buttons[2] = True
-        self.check_buttons()        
+        self.check_buttons()
 
     def __d_handler(self, event):
         """D handler."""
@@ -140,7 +139,7 @@ class Application(tk.Tk):
     def __s_release(self, event):
         """S release."""
         self.buttons[2] = False
-        self.check_buttons()        
+        self.check_buttons()
 
     def __d_release(self, event):
         """D release."""
@@ -168,7 +167,7 @@ class Application(tk.Tk):
         self.check_buttons()
 
     def check_buttons(self):
-        """Check buttons"""
+        """Check buttons."""
         # print(self.buttons)
         if not self.buttons[8]:
             if self.buttons[0]:
@@ -257,6 +256,7 @@ class Application(tk.Tk):
         """Lose game."""
         messagebox.showinfo('End_game', 'Second player win!')
         self.new_game()
+
 
 app = Application()
 app.title('paper.io')

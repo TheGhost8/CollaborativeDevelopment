@@ -17,9 +17,10 @@ class Application(tk.Tk):
         super().__init__(master, **kwargs)
         self.frame = tk.Frame(self)
         self.frame.pack()
-        self.restart = tk.Button(self.frame, text="New game", command=self.new_game, width=27, height=2).pack(side=tk.LEFT)
-        self.info = tk.Button(self.frame, text="Information", command=self.text_info, width=27, height=2).pack(side=tk.LEFT)
-        self.exit = tk.Button(self.frame, text="Exit", command=self.quit, width=27, height=2).pack(side=tk.LEFT)
+        self.language = tk.Button(self.frame, text="Change language", command=self.change_languege, width=17, height=2).pack(side=tk.LEFT)
+        self.restart = tk.Button(self.frame, text="New game", command=self.new_game, width=20, height=2).pack(side=tk.LEFT)
+        self.info = tk.Button(self.frame, text="Information", command=self.text_info, width=20, height=2).pack(side=tk.LEFT)
+        self.exit = tk.Button(self.frame, text="Exit", command=self.quit, width=20, height=2).pack(side=tk.LEFT)
         self.clock = Clock(self.frame).pack(side=tk.LEFT)
 
         self.buttons = [False for i in range(9)]
@@ -36,6 +37,7 @@ class Application(tk.Tk):
         self.bind_all('<KeyPress-p>', self.__p_handler)
         self.bind_all('<KeyPress-i>', self.text_info)
         self.bind_all('<KeyPress-n>', self.new_game)
+        self.bind_all('<KeyPress-c>', self.change_languege)
         self.bind_all('<KeyPress-Escape>', self.escape_handler)
 
         self.bind_all('<KeyPress-a>', self.__a_handler)
@@ -55,6 +57,10 @@ class Application(tk.Tk):
         self.bind_all('<KeyRelease-Up>', self.__arrow_up_release)
         self.bind_all('<KeyRelease-Down>', self.__arrow_down_release)
         self.bind_all('<KeyRelease-Right>', self.__arrow_right_release)
+
+    def change_languege(self, event=None):
+        """Change languege."""
+        pass
 
     def new_game(self, event=None):
         """New."""

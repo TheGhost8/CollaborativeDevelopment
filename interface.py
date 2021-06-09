@@ -3,7 +3,6 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
-import pygame
 from map import Map
 from clock import Clock
 
@@ -73,14 +72,15 @@ class Application(tk.Tk):
 
         for i in self.field.get_tiles_player1():
             self.canv.create_rectangle(i[0] * self.field.player1.player_size(), i[1] * self.field.player1.player_size(), i[0] * self.field.player1.player_size() + self.field.player1.player_size(), i[1] * self.field.player1.player_size() + self.field.player1.player_size(), fill=self.field.player1.get_color(), outline=self.field.player1.get_color())
-        for i in self.field.get_potential_tiles_player1():
-            self.canv.create_rectangle(i[0] * self.field.player1.player_size(), i[1] * self.field.player1.player_size(), i[0] * self.field.player1.player_size() + self.field.player1.player_size(), i[1] * self.field.player1.player_size() + self.field.player1.player_size(), fill=self.field.player1.get_transparent_color(), outline=self.field.player1.get_transparent_color())
-        self.canv.create_rectangle(self.field.player1.get_x(), self.field.player1.get_y(), self.field.player1.get_x() + self.field.player1.player_size(), self.field.player1.get_y() + self.field.player1.player_size(), fill=self.field.player1.get_color())
-
         for i in self.field.get_tiles_player2():
             self.canv.create_rectangle(i[0] * self.field.player2.player_size(), i[1] * self.field.player2.player_size(), i[0] * self.field.player2.player_size() + self.field.player2.player_size(), i[1] * self.field.player2.player_size() + self.field.player2.player_size(), fill=self.field.player2.get_color(), outline=self.field.player2.get_color())
+
+        for i in self.field.get_potential_tiles_player1():
+            self.canv.create_rectangle(i[0] * self.field.player1.player_size(), i[1] * self.field.player1.player_size(), i[0] * self.field.player1.player_size() + self.field.player1.player_size(), i[1] * self.field.player1.player_size() + self.field.player1.player_size(), fill=self.field.player1.get_transparent_color(), outline=self.field.player1.get_transparent_color())
         for i in self.field.get_potential_tiles_player2():
             self.canv.create_rectangle(i[0] * self.field.player2.player_size(), i[1] * self.field.player2.player_size(), i[0] * self.field.player2.player_size() + self.field.player2.player_size(), i[1] * self.field.player2.player_size() + self.field.player2.player_size(), fill=self.field.player2.get_transparent_color(), outline=self.field.player2.get_transparent_color())
+
+        self.canv.create_rectangle(self.field.player1.get_x(), self.field.player1.get_y(), self.field.player1.get_x() + self.field.player1.player_size(), self.field.player1.get_y() + self.field.player1.player_size(), fill=self.field.player1.get_color())
         self.canv.create_rectangle(self.field.player2.get_x(), self.field.player2.get_y(), self.field.player2.get_x() + self.field.player2.player_size(), self.field.player2.get_y() + self.field.player2.player_size(), fill=self.field.player2.get_color())
 
     def escape_handler(self, event):

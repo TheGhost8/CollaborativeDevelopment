@@ -51,13 +51,55 @@ class Map:
         """Update player1."""
         invincible = (self.coords_to_tiles(self.player1.get_x(), self.player1.get_y()) in self.tiles_player1) or (self.coords_to_tiles(self.player1.get_x() + self.player1.player_size() - 1, self.player1.get_y()) in self.tiles_player1) or (self.coords_to_tiles(self.player1.get_x(), self.player1.get_y() + self.player1.player_size() - 1) in self.tiles_player1) or (self.coords_to_tiles(self.player1.get_x() + self.player1.player_size() - 1, self.player1.get_y() + self.player1.player_size() - 1) in self.tiles_player1)
         if (self.player1.check_vincible() and invincible):
-            min_tile = min(self.potential_tiles_player1)
-            max_tile = max(self.potential_tiles_player1)
-            for x in range(min_tile[0], max_tile[0] + 1):
-                for y in range(min_tile[1], max_tile[1] + 1):
-                    self.tiles_player1.add((x, y))
-                    if ((x, y) in self.potential_tiles_player1):
-                        self.potential_tiles_player1.remove((x, y))
+            for y in range(0, int(self.PIXEL_SCREEN_HEIGHT / self.player1.player_size())):
+                met_potential_tiles = 0
+                met_colored_tiles = 0
+                new_tiles_player1 = set()
+                maybe_tiles_player1 = set()
+                if (0, y) in self.tiles_player1:
+                    met_colored_tiles += 1
+                if (0, y) in self.potential_tiles_player1:
+                    if ((1, y) not in potential_tiles_player1):
+                        met_potential_tiles += 1
+                    new_tiles_player1.add((0, y))
+                for x in range(1, int(self.PIXEL_SCREEN_WIDTH / self.player1.player_size()) - 1):
+                    if ((((x, y) in self.tiles_player1) and ((x - 1, y) not in self.tiles_player1)) or
+                        (((x, y) in self.tiles_player1) and ((x + 1, y) not in self.tiles_player1))):
+                        met_colored_tiles += 1
+                        if (met_colored_tiles % 2 == 0):
+                            new_tiles_player1 = new_tiles_player1 | maybe_tiles_player1
+                            maybe_tiles_player1.clear()
+                    if (((x, y) in self.potential_tiles_player1) and ((x - 1, y) in self.tiles_player1)):
+                        met_colored_tiles = 0
+                    if (((x, y) in self.tiles_player1) and ((x - 1, y) in self.potential_tiles_player1)):
+                        met_potential_tiles = 0
+                    if ((((x, y) in self.potential_tiles_player1) and ((x - 1, y) not in self.potential_tiles_player1) and ((x - 1, y) not in self.tiles_player1)) or
+                        (((x, y) in self.potential_tiles_player1) and ((x + 1, y) not in self.potential_tiles_player1) and ((x + 1, y) not in self.tiles_player1) and
+                                                                      ((x - 1, y) not in self.potential_tiles_player1))):
+                        met_potential_tiles += 1
+                        if ((met_colored_tiles > 0) and (met_colored_tiles % 2 == 0) and (met_potential_tiles == 1)):
+                            new_tiles_player1 = new_tiles_player1 | maybe_tiles_player1
+                            maybe_tiles_player1.clear()
+                        if (met_potential_tiles % 2 == 0):
+                            new_tiles_player1 = new_tiles_player1 | maybe_tiles_player1
+                            maybe_tiles_player1.clear()
+                    if ((met_colored_tiles > 0) and (met_colored_tiles % 2 == 0) and (met_potential_tiles == 0)):
+                        maybe_tiles_player1.add((x, y))
+                    if (((met_potential_tiles % 2 == 1) and (met_colored_tiles == 0)) or ((met_potential_tiles % 2 == 0) and (met_potential_tiles > 0) and (met_colored_tiles > 0))):
+                        maybe_tiles_player1.add((x, y))
+                    if ((x, y) in self.tiles_player1) or ((x, y) in self.potential_tiles_player1):
+                        new_tiles_player1.add((x, y))
+
+                if (((int(self.PIXEL_SCREEN_WIDTH / self.player1.player_size()) - 1, y) in self.potential_tiles_player1) or
+                    ((int(self.PIXEL_SCREEN_WIDTH / self.player1.player_size()) - 1, y) in self.tiles_player1)):
+                    new_tiles_player1 = new_tiles_player1 | maybe_tiles_player1
+                    maybe_tiles_player1.clear()
+                if ((int(self.PIXEL_SCREEN_WIDTH / self.player1.player_size()) - 1, y) in self.potential_tiles_player1):
+                    new_tiles_player1.add((int(self.PIXEL_SCREEN_WIDTH / self.player1.player_size()) - 1, y))
+                self.tiles_player1 = self.tiles_player1 | new_tiles_player1
+
+            self.tiles_player2 = self.tiles_player2 - (self.tiles_player1 & self.tiles_player2)
+            self.potential_tiles_player1.clear()
         self.player1.change_vincible(not invincible)
         if self.player1.check_vincible():
             self.potential_tiles_player1.add(self.coords_to_tiles(self.player1.get_x(), self.player1.get_y()))
@@ -71,13 +113,55 @@ class Map:
         """Update_player2."""
         invincible = (self.coords_to_tiles(self.player2.get_x(), self.player2.get_y()) in self.tiles_player2) or (self.coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y()) in self.tiles_player2) or (self.coords_to_tiles(self.player2.get_x(), self.player2.get_y() + self.player2.player_size() - 1) in self.tiles_player2) or (self.coords_to_tiles(self.player2.get_x() + self.player2.player_size() - 1, self.player2.get_y() + self.player2.player_size() - 1) in self.tiles_player2)
         if (self.player2.check_vincible() and invincible):
-            min_tile = min(self.potential_tiles_player2)
-            max_tile = max(self.potential_tiles_player2)
-            for x in range(min_tile[0], max_tile[0] + 1):
-                for y in range(min_tile[1], max_tile[1] + 1):
-                    self.tiles_player2.add((x, y))
-                    if ((x, y) in self.potential_tiles_player2):
-                        self.potential_tiles_player2.remove((x, y))
+            for y in range(0, int(self.PIXEL_SCREEN_HEIGHT / self.player2.player_size())):
+                met_potential_tiles = 0
+                met_colored_tiles = 0
+                new_tiles_player2 = set()
+                maybe_tiles_player2 = set()
+                if (0, y) in self.tiles_player2:
+                    met_colored_tiles += 1
+                if (0, y) in self.potential_tiles_player2:
+                    if ((1, y) not in potential_tiles_player2):
+                        met_potential_tiles += 1
+                    new_tiles_player2.add((0, y))
+                for x in range(1, int(self.PIXEL_SCREEN_WIDTH / self.player2.player_size()) - 1):
+                    if ((((x, y) in self.tiles_player2) and ((x - 1, y) not in self.tiles_player2)) or
+                        (((x, y) in self.tiles_player2) and ((x + 1, y) not in self.tiles_player2))):
+                        met_colored_tiles += 1
+                        if (met_colored_tiles % 2 == 0):
+                            new_tiles_player2 = new_tiles_player2 | maybe_tiles_player2
+                            maybe_tiles_player2.clear()
+                    if (((x, y) in self.potential_tiles_player2) and ((x - 1, y) in self.tiles_player2)):
+                        met_colored_tiles = 0
+                    if (((x, y) in self.tiles_player2) and ((x - 1, y) in self.potential_tiles_player2)):
+                        met_potential_tiles = 0
+                    if ((((x, y) in self.potential_tiles_player2) and ((x - 1, y) not in self.potential_tiles_player2) and ((x - 1, y) not in self.tiles_player2)) or
+                        (((x, y) in self.potential_tiles_player2) and ((x + 1, y) not in self.potential_tiles_player2) and ((x + 1, y) not in self.tiles_player2) and
+                                                                      ((x - 1, y) not in self.potential_tiles_player2))):
+                        met_potential_tiles += 1
+                        if ((met_colored_tiles > 0) and (met_colored_tiles % 2 == 0) and (met_potential_tiles == 1)):
+                            new_tiles_player2 = new_tiles_player2 | maybe_tiles_player2
+                            maybe_tiles_player2.clear()
+                        if (met_potential_tiles % 2 == 0):
+                            new_tiles_player2 = new_tiles_player2 | maybe_tiles_player2
+                            maybe_tiles_player2.clear()
+                    if ((met_colored_tiles > 0) and (met_colored_tiles % 2 == 0) and (met_potential_tiles == 0)):
+                        maybe_tiles_player2.add((x, y))
+                    if (((met_potential_tiles % 2 == 1) and (met_colored_tiles == 0)) or ((met_potential_tiles % 2 == 0) and (met_potential_tiles > 0) and (met_colored_tiles > 0))):
+                        maybe_tiles_player2.add((x, y))
+                    if ((x, y) in self.tiles_player2) or ((x, y) in self.potential_tiles_player2):
+                        new_tiles_player2.add((x, y))
+
+                if (((int(self.PIXEL_SCREEN_WIDTH / self.player2.player_size()) - 1, y) in self.potential_tiles_player2) or
+                    ((int(self.PIXEL_SCREEN_WIDTH / self.player2.player_size()) - 1, y) in self.tiles_player2)):
+                    new_tiles_player2 = new_tiles_player2 | maybe_tiles_player2
+                    maybe_tiles_player2.clear()
+                if ((int(self.PIXEL_SCREEN_WIDTH / self.player2.player_size()) - 1, y) in self.potential_tiles_player2):
+                    new_tiles_player2.add((int(self.PIXEL_SCREEN_WIDTH / self.player2.player_size()) - 1, y))
+                self.tiles_player2 = self.tiles_player2 | new_tiles_player2
+
+            self.tiles_player1 = self.tiles_player1 - (self.tiles_player2 & self.tiles_player1)
+            self.potential_tiles_player2.clear()
         self.player2.change_vincible(not invincible)
         if self.player2.check_vincible():
             self.potential_tiles_player2.add(self.coords_to_tiles(self.player2.get_x(), self.player2.get_y()))

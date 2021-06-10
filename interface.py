@@ -5,7 +5,12 @@ import tkinter as tk
 from tkinter import messagebox
 from map import Map
 from clock import Clock
+import gettext
 
+gettext.install('interface', localedir='po')
+
+#def _(a):
+#    return a
 
 class Application(tk.Tk):
     """Class conteined all."""
@@ -17,14 +22,12 @@ class Application(tk.Tk):
         super().__init__(master, **kwargs)
         self.frame = tk.Frame(self)
         self.frame.pack()
-        self.restart = tk.Button(self.frame, text="New game", command=self.new_game, width=20, height=2).pack(side=tk.LEFT)
-        self.language = tk.Button(self.frame, text="Change language", command=self.change_languege, width=19, height=2).pack(side=tk.LEFT)
-        self.info = tk.Button(self.frame, text="Information", command=self.text_info, width=19, height=2).pack(side=tk.LEFT)
-        self.exit = tk.Button(self.frame, text="Exit", command=self.quit, width=20, height=2).pack(side=tk.LEFT)
+        self.restart = tk.Button(self.frame, text=_("New game"), command=self.new_game, width=20, height=2).pack(side=tk.LEFT)
+        self.info = tk.Button(self.frame, text=_("Information"), command=self.text_info, width=19, height=2).pack(side=tk.LEFT)
+        self.exit = tk.Button(self.frame, text=_("Exit"), command=self.quit, width=20, height=2).pack(side=tk.LEFT)
         self.clock = Clock(self.frame).pack(side=tk.LEFT)
 
         self.buttons = [False for i in range(9)]
-        self.after(33, self.movement)
         self.click()
         self.window = tk.Frame(self)
         self.window.pack()
@@ -47,7 +50,6 @@ class Application(tk.Tk):
         self.bind_all('<KeyPress-p>', self.__p_handler)
         self.bind_all('<KeyPress-i>', self.text_info)
         self.bind_all('<KeyPress-n>', self.new_game)
-        self.bind_all('<KeyPress-c>', self.change_languege)
         self.bind_all('<KeyPress-Escape>', self.escape_handler)
 
         self.bind_all('<KeyPress-a>', self.__a_handler)
@@ -68,15 +70,12 @@ class Application(tk.Tk):
         self.bind_all('<KeyRelease-Down>', self.__arrow_down_release)
         self.bind_all('<KeyRelease-Right>', self.__arrow_right_release)
 
-    def change_languege(self, event=None):
-        """Change languege."""
-        pass
-
     def new_game(self, event=None):
         """New."""
         self.field = Map()
         self.pause = False
         self.draw_everything()
+        self.after(33, self.movement)
 
     def draw_everything(self):
         """Draw everything."""
@@ -107,7 +106,7 @@ class Application(tk.Tk):
 
         self.buttons[8] = not self.buttons[8]
         if self.buttons[8]:
-            messagebox.showinfo('Pause', 'Press <p> to continue')
+            messagebox.showinfo(_('Pause'), _('Press <p> to continue'))
         self.check_buttons()
 
     def __a_handler(self, event):
@@ -269,18 +268,18 @@ class Application(tk.Tk):
 
     def text_info(self, event=None):
         """Text info."""
-        messagebox.showinfo('information', 'Игра для двоих пользователей.\nЕсть два игрока\n - небольшие квадратики разного цвета с выделенным ободком.\n Каждый игрок может двигаться влево/вправо/вверх/вниз и наискосок. Когда игрок идёт по нейтральной территории, за ним тянется полупрозрачный след из его цвета\nИгровые кнопки:\n "Esc" - выход из игры\n "p" - пауза\n "i" - показать окно информации\n "n" - новая игра\n Управление игроками:\n Первый игрок: "w", "a", "s", "d"\n Второй игрок: стрелочки))\n\n Правила игры - на игровом поле перемещать своего персонажа и захватывать территории\nпутем закрашивания пройденного следа персонажем и возможности закрашивать\nв свой цвет области, обведенные уже закрашенными областями поля\nЕсли до того, как игрок вернулся на свою закращенную область, соперник перешёл через его полупрозрачный след (разорвал связь игрока с его закрашенной областью), то игрок проигрывает - побеждает соперник.\n Цель игры - уничтожить соперника')
+        messagebox.showinfo(_('Information'), _('"Esc" - exit the game.\n"p" - pause.\n"i" - show information window.\n"n" - new game.\nFirst player controls: "w", "a", "s", "d".\nSecond player controls: arrows.\n'))
 
     def won(self):
         """Win game."""
         self.pause = True
-        messagebox.showinfo('End_game', 'First player win!')
+        messagebox.showinfo(_('End_game'), _('First player win!'))
         self.new_game()
 
     def lose(self):
         """Lose game."""
         self.pause = True
-        messagebox.showinfo('End_game', 'Second player win!')
+        messagebox.showinfo(_('End_game'), _('Second player win!'))
         self.new_game()
 
 

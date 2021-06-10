@@ -90,6 +90,8 @@ class Application(tk.Tk):
     def __p_handler(self, event):
         """Pause control."""
         self.buttons[8] = not self.buttons[8]
+        if self.buttons[8]:
+            messagebox.showinfo('Pause', 'Press <p> to continue')
         self.check_buttons()
 
     def __a_handler(self, event):

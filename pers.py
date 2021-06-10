@@ -42,6 +42,7 @@ class Player():
         return self.transparent_color
 
     def set_direction(self, new_new_direction):
+        """Set direction."""
         if (new_new_direction == 'UP') and (self.direction != 'DOWN'):
             self.new_direction = new_new_direction
         if (new_new_direction == 'DOWN') and (self.direction != 'UP'):
@@ -88,4 +89,3 @@ class Player():
             self.y = self.y - self.speed
         if self.direction == 'DOWN':
             self.y = self.y + self.speed
-

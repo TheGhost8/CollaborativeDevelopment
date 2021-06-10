@@ -24,12 +24,18 @@ class Application(tk.Tk):
 
         self.buttons = [False for i in range(9)]
         # self.bind("<KeyPress>", self.keydown)
+        self.after(33, self.movement)
         self.click()
         self.window = tk.Frame(self)
         self.window.pack()
         self.canv = tk.Canvas(self.window, bg='#fff', width=800, height=600)
         self.canv.pack(side=tk.LEFT)
         self.new_game()
+
+    def movement(self):
+        self.field.move_everything()
+        self.draw_everything()
+        self.after(33, self.movement)
 
     def click(self):
         """Click some buttons."""

@@ -13,6 +13,7 @@ class Application(tk.Tk):
     def __init__(self, master=None, title="Paper.io", **kwargs):
         """Create class."""
         self.field = Map()
+        self.pause = False
         super().__init__(master, **kwargs)
         self.frame = tk.Frame(self)
         self.frame.pack()
@@ -23,7 +24,6 @@ class Application(tk.Tk):
         self.clock = Clock(self.frame).pack(side=tk.LEFT)
 
         self.buttons = [False for i in range(9)]
-        # self.bind("<KeyPress>", self.keydown)
         self.after(33, self.movement)
         self.click()
         self.window = tk.Frame(self)
@@ -33,9 +33,14 @@ class Application(tk.Tk):
         self.new_game()
 
     def movement(self):
-        self.field.move_everything()
-        self.draw_everything()
-        self.after(33, self.movement)
+        if not self.pause:
+            self.field.move_everything()
+            self.draw_everything()
+            self.after(33, self.movement)
+            if (self.field.player1.check_win()):
+                self.won()
+            if (self.field.player2.check_win()):
+                self.lose()
 
     def click(self):
         """Click some buttons."""
@@ -70,6 +75,7 @@ class Application(tk.Tk):
     def new_game(self, event=None):
         """New."""
         self.field = Map()
+        self.pause = False
         self.draw_everything()
 
     def draw_everything(self):
@@ -95,6 +101,10 @@ class Application(tk.Tk):
 
     def __p_handler(self, event):
         """Pause control."""
+        self.pause = not self.pause
+        if self.pause == False:
+            self.after(33, self.movement)
+
         self.buttons[8] = not self.buttons[8]
         if self.buttons[8]:
             messagebox.showinfo('Pause', 'Press <p> to continue')
@@ -263,11 +273,13 @@ class Application(tk.Tk):
 
     def won(self):
         """Win game."""
+        self.pause = True
         messagebox.showinfo('End_game', 'First player win!')
         self.new_game()
 
     def lose(self):
         """Lose game."""
+        self.pause = True
         messagebox.showinfo('End_game', 'Second player win!')
         self.new_game()
 

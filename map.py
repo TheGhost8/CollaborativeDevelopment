@@ -175,52 +175,20 @@ class Map:
         """Process_movement."""
         if key == 'W':
             self.player1.set_direction('UP')
-            #self.player1.move()
-            #if (self.player1.get_y() < 0):
-            #    self.player1.set_y(0)
-            #self.update_player1()
         elif key == 'D':
             self.player1.set_direction('RIGHT')
-            #self.player1.move()
-            #if (self.player1.get_x() + self.player1.player_size() > self.PIXEL_SCREEN_WIDTH):
-            #    self.player1.set_x(self.PIXEL_SCREEN_WIDTH - self.player1.player_size())
-            #self.update_player1()
         elif key == 'S':
             self.player1.set_direction('DOWN')
-            #self.player1.move()
-            #if (self.player1.get_y() + self.player1.player_size() > self.PIXEL_SCREEN_HEIGHT):
-            #    self.player1.set_y(self.PIXEL_SCREEN_HEIGHT - self.player1.player_size())
-            #self.update_player1()
         elif key == 'A':
             self.player1.set_direction('LEFT')
-            #self.player1.move()
-            #if (self.player1.get_x() < 0):
-            #    self.player1.set_x(0)
-            #self.update_player1()
         elif key == 'ARROW_UP':
             self.player2.set_direction('UP')
-            #self.player2.move()
-            #if (self.player2.get_y() < 0):
-            #    self.player2.set_y(0)
-            #self.update_player2()
         elif key == 'ARROW_RIGHT':
             self.player2.set_direction('RIGHT')
-            #self.player2.move()
-            #if (self.player2.get_x() + self.player2.player_size() > self.PIXEL_SCREEN_WIDTH):
-            #    self.player2.set_x(self.PIXEL_SCREEN_WIDTH - self.player2.player_size())
-            #self.update_player2()
         elif key == 'ARROW_DOWN':
             self.player2.set_direction('DOWN')
-            #self.player2.move()
-            #if (self.player2.get_y() + self.player2.player_size() > self.PIXEL_SCREEN_HEIGHT):
-            #    self.player2.set_y(self.PIXEL_SCREEN_HEIGHT - self.player2.player_size())
-            #self.update_player2()
         elif key == 'ARROW_LEFT':
             self.player2.set_direction('LEFT')
-            #self.player2.move()
-            #if (self.player2.get_x() < 0):
-            #    self.player2.set_x(0)
-            #self.update_player2()
 
     def move_everything(self):
         self.player1.move()

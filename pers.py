@@ -4,7 +4,7 @@
 class Player():
     """class that conteins player and its methods."""
 
-    def __init__(self, new_x=0, new_y=0, new_size=20, new_speed=5, new_color='#FFFFFF', new_transparent_color='#000000'):
+    def __init__(self, new_x=0, new_y=0, new_size=20, new_speed=5, new_color='#FFFFFF', new_transparent_color='#000000', start_direction='UP'):
         """Create player."""
         self.x = new_x
         self.y = new_y
@@ -12,6 +12,8 @@ class Player():
         self.speed = new_speed
         self.color = new_color
         self.transparent_color = new_transparent_color
+        self.direction = start_direction
+        self.new_direction = start_direction
         self.vincible = False
         self.win = False
 
@@ -39,6 +41,16 @@ class Player():
         """Get transparent color."""
         return self.transparent_color
 
+    def set_direction(self, new_new_direction):
+        if (new_new_direction == 'UP') and (self.direction != 'DOWN'):
+            self.new_direction = new_new_direction
+        if (new_new_direction == 'DOWN') and (self.direction != 'UP'):
+            self.new_direction = new_new_direction
+        if (new_new_direction == 'LEFT') and (self.direction != 'RIGHT'):
+            self.new_direction = new_new_direction
+        if (new_new_direction == 'RIGHT') and (self.direction != 'LEFT'):
+            self.new_direction = new_new_direction
+
     def set_coords(self, new_x, new_y):
         """Set coords."""
         self.x = new_x
@@ -64,13 +76,16 @@ class Player():
         """Player size."""
         return self.size
 
-    def move(self, command):
+    def move(self):
         """Move."""
-        if command == 'LEFT':
+        if (self.direction != self.new_direction) and (self.x % self.size == 0) and (self.y % self.size == 0):
+            self.direction = self.new_direction
+        if self.direction == 'LEFT':
             self.x = self.x - self.speed
-        if command == 'RIGHT':
+        if self.direction == 'RIGHT':
             self.x = self.x + self.speed
-        if command == 'UP':
+        if self.direction == 'UP':
             self.y = self.y - self.speed
-        if command == 'DOWN':
+        if self.direction == 'DOWN':
             self.y = self.y + self.speed
+

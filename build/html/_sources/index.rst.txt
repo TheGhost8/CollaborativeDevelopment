@@ -9,6 +9,13 @@ Welcome to Paper.io's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :numbered:
+
+	interface
+	map
+	pers
+	clock
+	bot
 
 
 
@@ -45,6 +52,17 @@ Player реализует одного игрока. Имеет следующи
 
 clock.py:
 Clock - наследуется от label, в текстовом поле выводит точное время(время системы)
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   :numbered:
+
+	interface
+	map
+	pers
+	clock
+	bot
 
 
 .. figure:: _static/EX-kUuPMl9k.jpg

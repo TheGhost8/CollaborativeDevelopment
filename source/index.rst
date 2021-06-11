@@ -9,6 +9,13 @@ Welcome to Paper.io's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :numbered:
+
+	interface
+	map
+	pers
+	clock
+	bot
 
 
 

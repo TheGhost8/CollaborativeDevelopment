@@ -8,9 +8,10 @@ from clock import Clock
 import gettext
 
 gettext.install('interface', localedir='po')
+"""Localization."""
+# def _(a):
+# return a
 
-#def _(a):
-#    return a
 
 class Application(tk.Tk):
     """Class conteined all."""
@@ -22,9 +23,9 @@ class Application(tk.Tk):
         super().__init__(master, **kwargs)
         self.frame = tk.Frame(self)
         self.frame.pack()
-        self.restart = tk.Button(self.frame, text=_("New game"), command=self.new_game, width=20, height=2).pack(side=tk.LEFT)
-        self.info = tk.Button(self.frame, text=_("Information"), command=self.text_info, width=19, height=2).pack(side=tk.LEFT)
-        self.exit = tk.Button(self.frame, text=_("Exit"), command=self.quit, width=20, height=2).pack(side=tk.LEFT)
+        self.restart = tk.Button(self.frame, text=_("New game"), command=self.new_game, width=28, height=2).pack(side=tk.LEFT)
+        self.info = tk.Button(self.frame, text=_("Information"), command=self.text_info, width=27, height=2).pack(side=tk.LEFT)
+        self.exit = tk.Button(self.frame, text=_("Exit"), command=self.quit, width=28, height=2).pack(side=tk.LEFT)
         self.clock = Clock(self.frame).pack(side=tk.LEFT)
 
         self.buttons = [False for i in range(9)]
@@ -36,6 +37,7 @@ class Application(tk.Tk):
         self.new_game()
 
     def movement(self):
+        """Movement."""
         if not self.pause:
             self.field.move_everything()
             self.draw_everything()
@@ -101,7 +103,7 @@ class Application(tk.Tk):
     def __p_handler(self, event):
         """Pause control."""
         self.pause = not self.pause
-        if self.pause == False:
+        if not self.pause:
             self.after(33, self.movement)
 
         self.buttons[8] = not self.buttons[8]

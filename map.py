@@ -191,6 +191,7 @@ class Map:
             self.player2.set_direction('LEFT')
 
     def move_everything(self):
+        """Move everything."""
         self.player1.move()
         if (self.player1.get_x() < 0):
             self.player1.set_x(0)

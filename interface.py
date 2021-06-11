@@ -73,7 +73,7 @@ class Application(tk.Tk):
         self.bind_all('<KeyRelease-Right>', self.__arrow_right_release)
 
     def new_game(self, event=None):
-        """New."""
+        """Start new game."""
         self.field = Map()
         self.pause = False
         self.draw_everything()

@@ -11,11 +11,10 @@ Welcome to Paper.io's documentation!
    :caption: Contents:
    :numbered:
 
-	interface
-	map
-	pers
-	clock
-	bot
+   interface
+   map
+   pers
+   clock
 
 
 

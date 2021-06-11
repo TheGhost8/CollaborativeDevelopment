@@ -4,16 +4,19 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pers &#8212; Paper.io  documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. pers &#8212; Paper.io  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. clock" href="clock.html" />
+    <link rel="prev" title="2. map" href="map.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,8 +33,99 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="pers">
-<h1>pers<a class="headerlink" href="#pers" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-pers">
+<span id="pers"></span><h1><span class="section-number">3. </span>pers<a class="headerlink" href="#module-pers" title="Permalink to this headline">¶</a></h1>
+<p>module player.</p>
+<dl class="py class">
+<dt id="pers.Player">
+<em class="property">class </em><code class="sig-prename descclassname">pers.</code><code class="sig-name descname">Player</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_x</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">new_y</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">new_size</span><span class="o">=</span><span class="default_value">20</span></em>, <em class="sig-param"><span class="n">new_speed</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">new_color</span><span class="o">=</span><span class="default_value">'#FFFFFF'</span></em>, <em class="sig-param"><span class="n">new_transparent_color</span><span class="o">=</span><span class="default_value">'#000000'</span></em>, <em class="sig-param"><span class="n">start_direction</span><span class="o">=</span><span class="default_value">'UP'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player" title="Permalink to this definition">¶</a></dt>
+<dd><p>class that conteins player and its methods.</p>
+<dl class="py method">
+<dt id="pers.Player.change_vincible">
+<code class="sig-name descname">change_vincible</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_vincible</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.change_vincible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change vincible.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.change_win">
+<code class="sig-name descname">change_win</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_win</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.change_win" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change win.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.check_vincible">
+<code class="sig-name descname">check_vincible</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.check_vincible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check vincible.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.check_win">
+<code class="sig-name descname">check_win</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.check_win" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check win.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.get_color">
+<code class="sig-name descname">get_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.get_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get color.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.get_transparent_color">
+<code class="sig-name descname">get_transparent_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.get_transparent_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get transparent color.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.get_x">
+<code class="sig-name descname">get_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.get_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get x.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.get_y">
+<code class="sig-name descname">get_y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.get_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get y.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.move">
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.player_size">
+<code class="sig-name descname">player_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.player_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Player size.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.set_coords">
+<code class="sig-name descname">set_coords</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_x</span></em>, <em class="sig-param"><span class="n">new_y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.set_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set coords.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.set_direction">
+<code class="sig-name descname">set_direction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_new_direction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.set_direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set direction.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.set_x">
+<code class="sig-name descname">set_x</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.set_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set x.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pers.Player.set_y">
+<code class="sig-name descname">set_y</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pers.Player.set_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set y.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl>
 <dt>class Player:</dt><dd><p>class that conteins player and its methods.</p>
 </dd>
@@ -68,11 +162,20 @@
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="interface.html">1. interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">2. map</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. pers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clock.html">4. clock</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="map.html" title="previous chapter"><span class="section-number">2. </span>map</a></li>
+      <li>Next: <a href="clock.html" title="next chapter"><span class="section-number">4. </span>clock</a></li>
   </ul></li>
 </ul>
 </div>
@@ -102,7 +205,7 @@
       &copy;2021, Ivan_and_Alex.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
